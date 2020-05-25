@@ -68,18 +68,27 @@ public class MediaBar extends HBox {
 			public void invalidated(Observable observable) {
 				updateValues();
 			}
+		});
 
-			private void updateValues() {
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						time.setValue(player.getCurrentTime().toMillis() / player.getTotalDuration().toMillis() * 100);
-					}
-				});
+		time.valueProperty().addListener(new InvalidationListener() {
+			@Override
+			public void invalidated(Observable observable) {
+				if(time.isPressed()){
+					player.seek(player.getMedia().getDuration().multiply(time.getValue() / 100));
+				}
 			}
 		});
 	}
 
+
+	private void updateValues() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				time.setValue(player.getCurrentTime().toMillis() / player.getTotalDuration().toMillis() * 100);
+			}
+		});
+	}
 
 
 }
