@@ -1,5 +1,8 @@
 package application;
 
+import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -60,7 +63,23 @@ public class MediaBar extends HBox {
 			}
 		});
 
+		player.currentTimeProperty().addListener(new InvalidationListener() {
+			@Override
+			public void invalidated(Observable observable) {
+				updateValues();
+			}
+
+			private void updateValues() {
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						time.setValue(player.getCurrentTime().toMillis() / player.getTotalDuration().toMillis() * 100);
+					}
+				});
+			}
+		});
 	}
+
 
 
 }
