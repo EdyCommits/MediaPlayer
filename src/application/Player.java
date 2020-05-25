@@ -24,6 +24,7 @@ public class Player  extends BorderPane {
 		setCenter(pane);
 		bar = new MediaBar(player);
 		setBottom(bar);
+		setStyle("-fx-background-color: #FFFFFF;");
 
 		player.play();
 	}
