@@ -78,6 +78,15 @@ public class MediaBar extends HBox {
 				}
 			}
 		});
+
+		vol.valueProperty().addListener(new InvalidationListener() {
+			@Override
+			public void invalidated(Observable observable) {
+				if(vol.isPressed()){
+					player.setVolume(vol.getValue() / 100);
+				}
+			}
+		});
 	}
 
 
