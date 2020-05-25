@@ -46,7 +46,7 @@ public class Main extends Application {
 			}
 		});
 
-		player = new Player("file:/Users/edytabednarz/Developer/Video.mp4");
+		player = new Player("file:/Users/edytabednarz/Developer/MediaPlayer/resources/Video1.mp4");
 		player.setTop(menu);
 		Scene scene = new Scene(player, 720, 510, Color.BLACK);
 
